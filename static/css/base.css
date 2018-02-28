@@ -1,0 +1,38 @@
+body{ font-family:verdana, arial, sans-serif;}
+h1,h2{
+ text-align:center; 
+ font-weight:bold; 
+}
+p{
+ text-align:center;
+}
+div.content{
+ width:90%; 
+ margin-left:auto;
+ margin-right:auto;
+}
+
+canvas#cv{
+ width:480px;
+ height:480px;
+ text-align:center;
+ color:black;
+ margin-bottom:1%; 
+ float:none;
+ border:solid 2px #0000aa;
+}
+#eGraphic{
+ color:black; 
+ width:40%;
+ height:auto;
+ float:right; 
+}
+#eText{
+ color:#111122; 
+ text-align:left;
+ float:left;
+ width:55%;
+}
+#eDebug{
+ text-align:left;
+}

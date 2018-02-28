@@ -1,0 +1,39 @@
+body{
+ background:#4fffbb;
+ background-image:linear-gradient(to right, #ffb9b8, #ffff85, #cdffbc, #c0beff, #fcb9ff);
+}
+h1,p{color:#0000aa;}
+canvas#cv{ border:solid 2px #0000aa;}
+#eScore,#eFind{
+ color:#0000aa;
+ text-align:center;
+ font-weight:bold;
+}
+#eScore{
+  font-size:120%;
+}
+#eFind{
+  font-size:160%;
+  padding:4%;
+  border:solid 2px #0000aa;
+}
+
+button.b{
+ width:50%;
+ margin-left:25%;
+ margin-right:auto;
+}
+button.b:hover, button.b:active{
+  box-shadow: 8px 8px 8px #888888;
+}
+.rb{
+ padding:4%;
+ border:solid 2px #0000aa;;
+ -webkit-appearance:none;
+ float:none;
+ background: #00935a; /* Browsers not supporting gradients */
+ background-image:linear-gradient(#ffff63, #abffab, #b0ceff, #ff99ff);
+ color:#0000aa;
+ font-weight:bold;
+ font-size:large;
+}

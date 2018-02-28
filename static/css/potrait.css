@@ -1,0 +1,15 @@
+#eGraphic,#eText{
+ display:block;
+ width:480px; 
+ margin-left:auto;
+ margin-right:auto;
+ text-align:center;
+}
+#eDebug{
+ text-align:center;
+}
+button.b{
+ clear:both;
+ display:block;
+ padding:4%;
+}

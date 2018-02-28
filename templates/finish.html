@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block content%}
+
+ {{ player.name }} 
+   more levels to be added
+
+{% if user and not user.is_anonymous %}
+     <li>
+       <a>Hello {{ user.get_full_name|default:user.username }}!</a>
+     </li>
+ <!--     <li>
+       <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+     </li> -->
+     <a href="/lboard/">Leaderboard</a></li>
+{% endif %}
+
+{%endblock%}

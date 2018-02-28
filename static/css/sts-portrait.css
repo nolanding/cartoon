@@ -1,0 +1,166 @@
+/* DEFAULT,TUTORIALS,TOC,BUTTONS */
+/* SITE MAP, REALIGNMENT,EXAMPLES,SOCIAL*/
+/* DEFAULT */
+h1,h2{font-weight:normal;}
+q,h1,h2,h3,h4,h5{text-align:center;}
+h1{font-size:140%;}
+h2{font-size:120%;}
+h3{font-size:110%;}
+h4{font-size:100%;}
+p {text-align:left; padding-top:1%;}
+q {margin-bottom:1%;}
+li {
+ padding-bottom:2%; 
+}
+select
+{
+ padding-top:2%; 
+ padding-bottom:2%;  
+}
+pre {
+white-space: pre-wrap;       /* Since CSS 2.1 */
+white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+white-space: -pre-wrap;      /* Opera 4-6 */
+white-space: -o-pre-wrap;    /* Opera 7 */
+word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+/* TOC */
+/* BUTTONS */
+.btn{
+ font-weight:bold;
+ display:block;
+ clear:both;
+ width:70%;
+ margin-left:auto;
+ margin-right:auto;
+ padding-top:4%;
+ padding-bottom:4%;
+ margin-bottom:4%;
+ margin-top:4%;
+}
+#eGraphic .btn{
+ margin-top:20%;
+}
+/* END TEST */
+.btn-two{
+ padding-bottom:2%;
+ padding-top:2%;
+ margin-bottom:2%;
+ margin-top:2%;
+ text-align:center;
+}
+div.digits{width:224px;}
+.btn-next{
+ margin:1%;
+}
+/* GDC */
+div.arrows{
+ font-weight:bold;
+ height:44px;
+ margin-bottom:4%;
+}
+img.arrow-r,img.arrow-l{
+ width:44px; 
+ height:auto;
+}
+div.gdc, div.gdc , div.gdc{
+ width:100%;
+ display:block; 
+ clear:both;
+ text-align:center;
+}
+/* SITE MAP */
+form.f-search{
+ margin-left:5%;
+}
+input.f-search{
+ width:44px;
+ height:50px;
+ padding-top:6px;
+ background-size: 44px 44px;
+ background-position: left center;
+ background-image:url('../assets/if-search.png');
+}
+input.f-text{
+ margin-top:2%;
+ font-weight:bold;
+ width:70%;
+ padding-top:4%;
+ padding-bottom:4%;
+ float:right;
+ margin-left:4px;
+}
+a.sm,a.h{
+ padding-top:6%;
+ padding-bottom:6%;
+}
+/* REALIGNMENT */
+#eGraphic,#eText{
+ float:none;
+ clear:both;
+ display:block;
+ width:100%; 
+ margin-left:auto;
+ margin-right:auto;
+ text-align:center;
+}
+div.graphic,div.imlnk{
+ width:80%; 
+ float:none; 
+ margin-left:auto; 
+ margin-right:auto;
+}
+/* EXAMPLES */
+canvas#cv, #cv{ 
+ float:none;
+ clear:both;
+ display:block;
+ margin-left:auto;
+ margin-right:auto;
+ width:100%;
+ height:auto;
+ text-align:center;
+}
+/* TUTORIALS */
+div.lnk{
+ float:none;
+ clear:both;
+ display:block;
+ width:100%;
+}
+a.bm{ 
+ width:100%;
+ display:block;
+ clear:both;
+ padding-bottom:4%;
+ margin-bottom:2%;
+}
+/* QUICK LINKS */
+.w3{width:50%; float:none; clear:both; display:block; margin-left:auto; margin-right:auto;}
+/* Scaleable Icons */
+.icon,.iconCtr{width:30%;}
+.iconCtr{margin-left:4%;}
+a.icon{
+ width:58px;
+}
+/* SOCIAL */
+div.fb,div.tw,div.ln{
+ padding:1%;
+}
+/* ADS */
+.symbol{ font-size:110%;}  
+
+/* Google Units Link and Text */
+div.ads-text,div.ads-link{clear:both; display:block; float:none; margin-left:auto; margin-right:auto;}
+div.ads-link-text{margin-top:1px; margin-bottom:1px;}
+/* Google Text Units */
+div.adsense-text{width:244px; height:138px; padding-top:2px;}
+div.adsense-link{padding-top:2px; width:238px; height:196px; }
+div.adsense-link-text{width:242px; height:188px; padding-top:4px;}
+/* text ad 234x60 */
+div.ads-text{float:none; clear:both; display:block; }
+/* link ad 200x90 */
+div.ads-link{ margin-top:2px; float:none; display:block;}
+/* link + text ads */
+div.adsense-link-text div.ads-text, div.adsense-link-text div.ads-link{float:none; clear:both; text-align:center; margin-left:auto; margin-right:auto;}
