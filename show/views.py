@@ -22,7 +22,16 @@ def index(request):
         player = models.player.objects.get(user_id=request.user.pk)
         try:
             level = models.level.objects.get(l_number=player.max_level)
-            return render(request, 'level.html', {'player': player, 'level': level})
+            dimension1 = models.dimension1.objects.get()
+            dimension2 = models.dimension2.objects.get()            
+            dimension3 = models.dimension3.objects.get()
+            dimension4 = models.dimension4.objects.get()
+            dimension5 = models.dimension5.objects.get()
+            dimension6 = models.dimension6.objects.get()
+            dimension7 = models.dimension7.objects.get()
+            dimension8 = models.dimension8.objects.get()
+
+            return render(request, 'level.html', {'player': player, 'level': level, 'dimension1':dimension1, 'dimension2' : dimension2, 'dimension3': dimension3, 'dimension4': dimension4, 'dimension5': dimension5, 'dimension6': dimension6, 'dimension7': dimension7, 'dimension8' :dimension8})
         except:
             global last
             if player.max_level > last:

@@ -36,19 +36,8 @@ word-wrap: break-word;       /* Internet Explorer 5.5+ */
 nav.links{
  padding-top:2%; 
 }
-/* SOCIAL */
-div.fb,div.tw,div.ln{
- padding:1%;
-}
-/* SITE MAP */
-input.f-search{
- width:44px;
- height:60px;
- padding-top:16px;
- background-size: 44px 44px;
- background-position: left bottom;
- background-image:url('Images/if-search.png');
-}
+
+
 input.f-text{
  margin-top:2%;
  font-weight:bold;

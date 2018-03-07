@@ -24,11 +24,11 @@
     <script type="text/javascript" src="{% static 'js/RElement.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/view-slide.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/view-interact.js' %}"></script>
-    <script >
+    <script type="text/javascript">
       function loadExample(){
   
  var arrayRC = createRElementArray();
- 
+
  loadBackground
  (
   '{{ level.image.url }}',
@@ -47,15 +47,14 @@ var aRC = new Array();
 
 aRC.push
 (
- 
  new RElement
  (
-  53, 
-  9,
-  84,
-  56,
-  "clock",
-  0
+  '{{ dimension1.iMinX }}', 
+  '{{ dimension1.iMinY }}',
+  '{{ dimension1.iMaxX }}',
+  '{{ dimension1.iMaxY}}',
+  '{{ dimension1.a }}',
+  '{{ dimension1.ob }}'
  )
 );
 
@@ -64,12 +63,12 @@ aRC.push
 (
  new RElement
  (
-  94, 
-  286, 
-  121,  
-  321,
-  "peace",
-  1
+  '{{ dimension2.iMinX }}', 
+  '{{ dimension2.iMinY }}',
+  '{{ dimension2.iMaxX }}',
+  '{{ dimension2.iMaxY}}',
+  '{{ dimension2.b }}',
+  '{{ dimension2.ob }}'
  )
 );
 
@@ -79,12 +78,12 @@ aRC.push
  new 
  RElement
  (
-  42,
-  410,
-  84,
-  468,
-  "ball",
-  2
+  '{{ dimension3.iMinX }}', 
+  '{{ dimension3.iMinY }}',
+  '{{ dimension3.iMaxX }}',
+  '{{ dimension3.iMaxY}}',
+  '{{ dimension3.c }}',
+  '{{ dimension3.ob }}'
   )
 );
 
@@ -93,12 +92,12 @@ aRC.push
 (
  new RElement
  (
-  374,
-  315,
-  477,
-  425,
-  "tent",
-  3
+  '{{ dimension4.iMinX }}', 
+  '{{ dimension4.iMinY }}',
+  '{{ dimension4.iMaxX }}',
+  '{{ dimension4.iMaxY }}',
+  '{{ dimension4.d }}',
+  '{{ dimension4.ob }}'
  )
 );
 
@@ -106,12 +105,12 @@ aRC.push
 (
  new RElement
  (
-  36,
-  349,
-  62,
-  472,
-  "camera",
-  4
+  '{{ dimension5.iMinX }}', 
+  '{{ dimension5.iMinY }}',
+  '{{ dimension5.iMaxX }}',
+  '{{ dimension5.iMaxY}}',
+  '{{ dimension5.e }}',
+  '{{ dimension5.ob }}'
  )
 );
 
@@ -119,12 +118,12 @@ aRC.push
 (
  new RElement
  (
-  49,
-  242,
-  102,
-  275,
-  "lizard",
-  5
+  '{{ dimension6.iMinX }}', 
+  '{{ dimension6.iMinY }}',
+  '{{ dimension6.iMaxX }}',
+  '{{ dimension6.iMaxY }}',
+  '{{ dimension6.f }}',
+  '{{ dimension6.ob }}'
  )
 );
 
@@ -132,12 +131,12 @@ aRC.push
 (
  new RElement
  (
-  371,
-  447,
-  412,
-  480,
-  "doll",
-  6
+  '{{ dimension7.iMinX }}', 
+  '{{ dimension7.iMinY }}',
+  '{{ dimension7.iMaxX }}',
+  '{{ dimension7.iMaxY }}',
+  '{{ dimension7.g }}',
+  '{{ dimension7.ob }}'
  )
 );
 
@@ -145,18 +144,19 @@ aRC.push
 (
  new RElement
  (
-  409,
-  437,
-  432,
-  452,
-  "tapes",
-  7
+  '{{ dimension8.iMinX }}', 
+  '{{ dimension8.iMinY }}',
+  '{{ dimension8.iMaxX }}',
+  '{{ dimension8.iMaxY}}',
+  '{{ dimension8.h }}',
+  '{{ dimension8.ob }}'
  )
 );
 return aRC;
 
 }
     </script>
+   
 
     <script type="text/javascript" src="{% static 'js/lib.js' %}"></script>
 
@@ -256,8 +256,8 @@ return aRC;
       </div>
       <div id="eText">
 
-      <p id="eFind">Find the Milky Way!</p>
-      <p id="eScore">You found the astronaut! Your score increases 100 points! Your score is 300</p>
+      <p id="eFind">Find the Objects</p>
+      <p id="eScore">You get 10 point for each Object,there are total 8.</p>
       <p id="eDebug"></p>
 
       <button class="b rb" onclick="startGame()">Play</button>
@@ -282,13 +282,14 @@ return aRC;
 
         Enter your answer:
         <br>
+        <div class="row" align="center">
         <form id="ans" method="post" action="/answer/">
             {% csrf_token %}
-            <br> <input type="text" name="ans" class="form-control" value="" size="50" autofocus/>
-            <br />
+            <input type="text" name="ans" class="form-control" value="" />
 
-            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit" />
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit"/>
         </form>
+      </div>
         </div>
 
       <!--<div class="col-lg-6 padleft">
@@ -298,11 +299,12 @@ return aRC;
           <p style="text-align:center;font-size:25px;color:#008080">Accuracy: {{level.accuracy}}</p>                    
         </div>
       </div>-->
+    </div>
 <footer class="footer">
-        <p>&copy; 2017 GNU/Linux users group, NIT Durgapur</p>
+        <p>&copy; 2018 GNU/Linux users group, NIT Durgapur</p>
       </footer>
 
-    </div> <!-- /container -->
+   <!-- /container -->
     
   
 
@@ -340,6 +342,8 @@ setBoard();
 document.getElementById('puzzle').onclick = function(e) {
   clickLoc.x = Math.floor((e.pageX - this.offsetLeft) / tileSize);
   clickLoc.y = Math.floor((e.pageY - this.offsetTop) / tileSize);
+  console.log(Math.floor((e.pageX - this.offsetLeft)));
+  console.log(Math.floor((e.pageY - this.offsetTop)));
   if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {
     slideTile(emptyLoc, clickLoc);
     drawTiles();
@@ -384,6 +388,7 @@ function distance(x1, y1, x2, y2) {
 
 function slideTile(toLoc, fromLoc) {
   if (!solved) {
+    console.log("Slide Tile");
     boardParts[toLoc.x][toLoc.y].x = boardParts[fromLoc.x][fromLoc.y].x;
     boardParts[toLoc.x][toLoc.y].y = boardParts[fromLoc.x][fromLoc.y].y;
     boardParts[fromLoc.x][fromLoc.y].x = tileCount - 1;
@@ -392,6 +397,7 @@ function slideTile(toLoc, fromLoc) {
     toLoc.y = fromLoc.y;
     checkSolved();
   }
+
 }
 
 function checkSolved() {

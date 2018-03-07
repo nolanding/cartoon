@@ -2,6 +2,7 @@ function loadExample(){
   
  var arrayRC = createRElementArray();
  
+
  loadBackground
  (
   '{{ level.image.url }}',

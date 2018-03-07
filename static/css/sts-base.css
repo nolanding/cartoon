@@ -340,29 +340,6 @@ a.bm:active{color:#008888;}
 .w3{width:30%; float:right;}
 .help{width:25%; float:left; margin-right:4%; margin-bottom:2%;}
 .lf{text-align:left;}
-/*SOCIAL*/
-div.fb,div.tw,div.ln{
- width:48px;
- height:48px;
- text-align:center;
- background-position:center center; 
- background-repeat:no-repeat; 
- background-size:48px 48px; 
- float:right;
- display:block;
-}
-div.fb:hover, div.tw:hover,div.ln:hover{
- opacity:0.4;
-}
-div.fb{ 
- background-image:url('Images/i-fb.png'); 
-}
-div.tw{
- background-image:url('Images/i-tw.png'); 
-}
-div.ln{
- background-image:url('../assets/i-ln.png'); 
-}
 /* My Ads with Text */
 .symbol-grn,.symbol{
  font-weight:bold;
