@@ -24,8 +24,259 @@
     <script type="text/javascript" src="{% static 'js/RElement.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/view-slide.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/view-interact.js' %}"></script>
-    <script type="text/javascript">
-      function loadExample(){
+
+    <script type="text/javascript" src="{% static 'js/lib.js' %}"></script>
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'img/favicon.png' %}">
+
+
+    <title>cartoon</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
+    
+    <link href="{% static 'css/bootstrap-social.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style_base.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css?family=Capriola|Creepster|Droid+Sans|Merriweather|Montserrat" rel="stylesheet">
+    
+  </head>
+
+  <body class="bodypad">
+
+    <div class="container">
+    
+    <div class="row">
+
+
+<!-- Example row of columns -->
+<div class="row">
+
+{% if user and not user.is_anonymous %}
+
+  <nav class="navbar navbar-default">
+  <div class="container1">
+    <div class="navbar-header">
+      <button style="background-color:#f5f5f5" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span9 class="icon-bar"></span9>
+        <span9 class="icon-bar"></span9>
+        <span9 class="icon-bar"></span9>                        
+      </button>
+      <a href="/" style="color:#000" class="navbar-brand"><span91 style="margin-left:10px;font-family: 'Creepster', cursive;font-size:20px;opacity: 0.8;">Cartoon</span91>
+      </a>
+<div class="navbar-brand" style="font-family:'Capriola',sans-serif;" >Your Score :   <span style="font-weight:bold;color:#5CB85C">{{player.score}} points</span></div>
+    
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a style="font-family:'Capriola',sans-serif;" href="/rules">Rules</a></li>
+        <li><a style="font-family:'Capriola',sans-serif;" href="/lboard/">Leaderboard</a></li>
+        <li class="dropdown">
+          <button class="dropdown-toggle btn btn-default navbar-btn" data-toggle="dropdown" style="margin-left:10px;background-color:#f5f5f5" >
+           
+<b>{{ user.get_full_name|default:user.username }}</b>
+
+          <span9 class="caret"></span9>
+          </button>
+          
+          <ul class="dropdown-menu">
+        <li><a href="{% url 'auth:logout' %}?next={{ request.path }}"><b>Logout</b></a></li>
+          </ul>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+{% endif %}
+
+<div class="lead" style="padding:10px; font-family: 'Montserrat', sans-serif;  ">
+            Q:
+            {{ level.text }}
+            </div>
+            
+      <!-- Jumbotron -->
+<div class="row">
+  <div class="col-sm-6">
+      <div class="jumbotron border-shadow" style="margin-top:15px;background-color:rgba(255, 255, 255, 0.4);">
+        <canvas id="cv" height="480cm" width="480cm" style="border:2px solid black;"></canvas>
+        <label>Puzzle</label>
+      </div></div>
+
+  <div class="col-sm-6" >
+      <div id="eText">
+
+      <p id="eFind">Find the Objects</p>
+      <p id="eScore">You get 10 point for each Object,there are total 8.</p>
+      <p id="eDebug"></p>
+
+      <button class="b rb" onclick="startGame()">Play</button>
+      <p></p>
+</div>
+
+  </div>
+</div>
+        <div class="col-lg-4 rules border-shadow" style="padding:1px;margin-left:400px;margin-right: 400px;" align="center" >
+          
+            {% block msgblock %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert {% if message.tags %} alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %}"{% endif %} role="alert">{{ message }}</div>
+            {% endfor %}
+            {% endif %}
+            {% endblock %}
+
+            </br>
+            </br>
+
+
+        Enter your answer:
+        <br>
+        <div class="row" align="center">
+        <form id="ans" method="post" action="/answer/">
+            {% csrf_token %}
+            <input type="text" name="ans" class="form-control" value="" />
+
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit"/>
+        </form>
+      </div>
+        </div>
+
+      <!--<div class="col-lg-6 padleft">
+        <div class="sidebox border-shadow" style="padding:15px">
+          <p style="font-size:24px;text-align:center;opacity:0.8">Number of people who crossed this level</p>
+          <p style="text-align:center;font-size:35px;color:green">{{level.numuser}}</p>
+          <p style="text-align:center;font-size:25px;color:#008080">Accuracy: {{level.accuracy}}</p>                    
+        </div>
+      </div>-->
+    </div>
+<footer class="footer">
+        <p>&copy; 2018 GNU/Linux users group, NIT Durgapur</p>
+      </footer>
+
+   <!-- /container -->
+    
+  
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+      
+       var context = document.getElementById('cv').getContext('2d');
+
+var img = new Image();
+img.src = "{{ level.puzzle.url }}";
+img.addEventListener('load', drawTiles, false);
+
+var boardSize = document.getElementById('cv').width;
+var tileCount = 2;
+
+var tileSize = boardSize / tileCount;
+
+var clickLoc = new Object;
+clickLoc.x = 0;
+clickLoc.y = 0;
+
+var emptyLoc = new Object;
+emptyLoc.x = 0;
+emptyLoc.y = 0;
+
+var solved = false;
+
+var boardParts;
+setBoard();
+
+document.getElementById('cv').onclick = function(e) {
+  var rect = e.target.getBoundingClientRect();
+  clickLoc.x = Math.floor((e.pageX - rect.left) / tileSize);
+  clickLoc.y = Math.floor((e.pageY- rect.top) / (tileSize));
+  console.log((e.pageX-rect.left), (e.pageY-rect.top));
+  if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {
+    slideTile(emptyLoc, clickLoc);
+    drawTiles();
+  }
+  if (solved) {
+    alert('You Solved it !');
+    loadExample();
+  }
+};
+
+function setBoard() {
+  boardParts = new Array(tileCount);
+  for (var i = 0; i < tileCount; ++i) {
+    boardParts[i] = new Array(tileCount);
+    for (var j = 0; j < tileCount; ++j) {
+      boardParts[i][j] = new Object;
+      boardParts[i][j].x = (tileCount - 1) - i;
+      boardParts[i][j].y = (tileCount - 1) - j;
+    }
+  }
+  emptyLoc.x = boardParts[tileCount - 1][tileCount - 1].x;
+  emptyLoc.y = boardParts[tileCount - 1][tileCount - 1].y;
+  solved = false;
+}
+
+function drawTiles() {
+  context.clearRect ( 0 , 0 , boardSize , boardSize );
+  for (var i = 0; i < tileCount; ++i) {
+    for (var j = 0; j < tileCount; ++j) {
+      var x = boardParts[i][j].x;
+      var y = boardParts[i][j].y;
+      if(i != emptyLoc.x || j != emptyLoc.y || solved == true) {
+        context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize,
+            i * tileSize, j * tileSize, tileSize, tileSize);
+      }
+    }
+  }
+}
+
+function distance(x1, y1, x2, y2) {
+  console.log(Math.abs(x1 - x2) + Math.abs(y1 - y2));
+  return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+}
+
+function slideTile(toLoc, fromLoc) {
+  if (!solved) {
+    boardParts[toLoc.x][toLoc.y].x = boardParts[fromLoc.x][fromLoc.y].x;
+    boardParts[toLoc.x][toLoc.y].y = boardParts[fromLoc.x][fromLoc.y].y;
+    boardParts[fromLoc.x][fromLoc.y].x = tileCount - 1;
+    boardParts[fromLoc.x][fromLoc.y].y = tileCount - 1;
+    toLoc.x = fromLoc.x;
+    toLoc.y = fromLoc.y;
+    checkSolved();
+  }
+
+}
+
+function checkSolved() {
+  var flag = true;
+  for (var i = 0; i < tileCount; ++i) {
+    for (var j = 0; j < tileCount; ++j) {
+      if (boardParts[i][j].x != i || boardParts[i][j].y != j) {
+        flag = false;
+      }
+    }
+  }
+  solved = flag;
+}
+
+//script for canvas 2 to load
+
+function loadExample(){
   
  var arrayRC = createRElementArray();
 
@@ -152,269 +403,16 @@ aRC.push
   '{{ dimension8.ob }}'
  )
 );
+console.log(aRC[0].p1);
 return aRC;
+ }
 
-}
-    </script>
-   
-
-    <script type="text/javascript" src="{% static 'js/lib.js' %}"></script>
-
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="{% static 'img/favicon.png' %}">
-
-
-    <title>cartoon</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/justified-nav.css' %}" rel="stylesheet">
-    
-    <link href="{% static 'css/bootstrap-social.css' %}" rel="stylesheet">
-    <link href="{% static 'css/style_base.css' %}" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.css">
-    <link href="https://fonts.googleapis.com/css?family=Capriola|Creepster|Droid+Sans|Merriweather|Montserrat" rel="stylesheet">
-    
-  </head>
-
-  <body class="bodypad" onload="javascript:loadExample()">
-
-    <div class="container">
-    
-    <div class="row">
-
-
-<!-- Example row of columns -->
-<div class="row">
-
-{% if user and not user.is_anonymous %}
-
-  <nav class="navbar navbar-default">
-  <div class="container1">
-    <div class="navbar-header">
-      <button style="background-color:#f5f5f5" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span9 class="icon-bar"></span9>
-        <span9 class="icon-bar"></span9>
-        <span9 class="icon-bar"></span9>                        
-      </button>
-      <a href="/" style="color:#000" class="navbar-brand"><span91 style="margin-left:10px;font-family: 'Creepster', cursive;font-size:20px;opacity: 0.8;">Cartoon</span91>
-      </a>
-<div class="navbar-brand" style="font-family:'Capriola',sans-serif;" >Your Score :   <span style="font-weight:bold;color:#5CB85C">{{player.score}} points</span></div>
-    
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-
-        <li><a style="font-family:'Capriola',sans-serif;" href="/rules">Rules</a></li>
-        <li><a style="font-family:'Capriola',sans-serif;" href="/lboard/">Leaderboard</a></li>
-        <li class="dropdown">
-          <button class="dropdown-toggle btn btn-default navbar-btn" data-toggle="dropdown" style="margin-left:10px;background-color:#f5f5f5" >
-           
-<b>{{ user.get_full_name|default:user.username }}</b>
-
-          <span9 class="caret"></span9>
-          </button>
-          
-          <ul class="dropdown-menu">
-        <li><a href="{% url 'auth:logout' %}?next={{ request.path }}"><b>Logout</b></a></li>
-          </ul>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-{% endif %}
-
-<div class="lead" style="padding:10px; font-family: 'Montserrat', sans-serif;  ">
-            Q:
-            {{ level.text }}
-            </div>
-            
-      <!-- Jumbotron -->
-<div class="row">
-  <div class="col-sm-6">
-      <div class="jumbotron border-shadow" style="margin-top:15px;background-color:rgba(255, 255, 255, 0.4);">
-        <canvas id="puzzle" height="480cm" width="480cm" style="border:2px solid black;"></canvas>
-        <label>Puzzle</label>
-      </div></div>
-
-  <div class="col-sm-6"  >
-        <div class="jumbotron border-shadow eGraphic" style="margin-top:15px;background-color:rgba(255, 255, 255, 0.4);">
-         <canvas id="cv" width="480px" height="480px">  
-        Your browser doesn't support canvas.
-        </canvas>     
-        <label>mystery</label>
-      </div>
-      <div id="eText">
-
-      <p id="eFind">Find the Objects</p>
-      <p id="eScore">You get 10 point for each Object,there are total 8.</p>
-      <p id="eDebug"></p>
-
-      <button class="b rb" onclick="startGame()">Play</button>
-      <p></p>
-</div>
-
-  </div>
-</div>
-        <div class="col-lg-4 rules border-shadow" style="padding:1px;margin-left:400px;margin-right: 400px;" align="center" >
-          
-            {% block msgblock %}
-            {% if messages %}
-            {% for message in messages %}
-            <div class="alert {% if message.tags %} alert-{% if message.tags == "error" %}danger{% else %}{{ message.tags }}{% endif %}"{% endif %} role="alert">{{ message }}</div>
-            {% endfor %}
-            {% endif %}
-            {% endblock %}
-
-            </br>
-            </br>
-
-
-        Enter your answer:
-        <br>
-        <div class="row" align="center">
-        <form id="ans" method="post" action="/answer/">
-            {% csrf_token %}
-            <input type="text" name="ans" class="form-control" value="" />
-
-            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit"/>
-        </form>
-      </div>
-        </div>
-
-      <!--<div class="col-lg-6 padleft">
-        <div class="sidebox border-shadow" style="padding:15px">
-          <p style="font-size:24px;text-align:center;opacity:0.8">Number of people who crossed this level</p>
-          <p style="text-align:center;font-size:35px;color:green">{{level.numuser}}</p>
-          <p style="text-align:center;font-size:25px;color:#008080">Accuracy: {{level.accuracy}}</p>                    
-        </div>
-      </div>-->
-    </div>
-<footer class="footer">
-        <p>&copy; 2018 GNU/Linux users group, NIT Durgapur</p>
-      </footer>
-
-   <!-- /container -->
-    
-  
-
-  <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script>
-      
-       var context = document.getElementById('puzzle').getContext('2d');
-
-var img = new Image();
-img.src = "{{ level.puzzle.url }}";
-img.addEventListener('load', drawTiles, false);
-
-var boardSize = document.getElementById('puzzle').width;
-var tileCount = 2;
-
-var tileSize = boardSize / tileCount;
-
-var clickLoc = new Object;
-clickLoc.x = 0;
-clickLoc.y = 0;
-
-var emptyLoc = new Object;
-emptyLoc.x = 0;
-emptyLoc.y = 0;
-
-var solved = false;
-
-var boardParts;
-setBoard();
-
-document.getElementById('puzzle').onclick = function(e) {
-  clickLoc.x = Math.floor((e.pageX - this.offsetLeft) / tileSize);
-  clickLoc.y = Math.floor((e.pageY - this.offsetTop) / tileSize);
-  console.log(Math.floor((e.pageX - this.offsetLeft)));
-  console.log(Math.floor((e.pageY - this.offsetTop)));
-  if (distance(clickLoc.x, clickLoc.y, emptyLoc.x, emptyLoc.y) == 1) {
-    slideTile(emptyLoc, clickLoc);
-    drawTiles();
-  }
-  if (solved) {
-    setTimeout(function() {alert("You solved it!");}, 500);
-  }
+Number.prototype.between = function(a, b, inclusive) {
+  var min = Math.min.apply(Math, [a, b]),
+    max = Math.max.apply(Math, [a, b]);
+  return inclusive ? this >= min && this <= max : this > min && this < max;
 };
 
-function setBoard() {
-  boardParts = new Array(tileCount);
-  for (var i = 0; i < tileCount; ++i) {
-    boardParts[i] = new Array(tileCount);
-    for (var j = 0; j < tileCount; ++j) {
-      boardParts[i][j] = new Object;
-      boardParts[i][j].x = (tileCount - 1) - i;
-      boardParts[i][j].y = (tileCount - 1) - j;
-    }
-  }
-  emptyLoc.x = boardParts[tileCount - 1][tileCount - 1].x;
-  emptyLoc.y = boardParts[tileCount - 1][tileCount - 1].y;
-  solved = false;
-}
-
-function drawTiles() {
-  context.clearRect ( 0 , 0 , boardSize , boardSize );
-  for (var i = 0; i < tileCount; ++i) {
-    for (var j = 0; j < tileCount; ++j) {
-      var x = boardParts[i][j].x;
-      var y = boardParts[i][j].y;
-      if(i != emptyLoc.x || j != emptyLoc.y || solved == true) {
-        context.drawImage(img, x * tileSize, y * tileSize, tileSize, tileSize,
-            i * tileSize, j * tileSize, tileSize, tileSize);
-      }
-    }
-  }
-}
-
-function distance(x1, y1, x2, y2) {
-  return Math.abs(x1 - x2) + Math.abs(y1 - y2);
-}
-
-function slideTile(toLoc, fromLoc) {
-  if (!solved) {
-    console.log("Slide Tile");
-    boardParts[toLoc.x][toLoc.y].x = boardParts[fromLoc.x][fromLoc.y].x;
-    boardParts[toLoc.x][toLoc.y].y = boardParts[fromLoc.x][fromLoc.y].y;
-    boardParts[fromLoc.x][fromLoc.y].x = tileCount - 1;
-    boardParts[fromLoc.x][fromLoc.y].y = tileCount - 1;
-    toLoc.x = fromLoc.x;
-    toLoc.y = fromLoc.y;
-    checkSolved();
-  }
-
-}
-
-function checkSolved() {
-  var flag = true;
-  for (var i = 0; i < tileCount; ++i) {
-    for (var j = 0; j < tileCount; ++j) {
-      if (boardParts[i][j].x != i || boardParts[i][j].y != j) {
-        flag = false;
-      }
-    }
-  }
-  solved = flag;
-}
-
-//script for canvas 2 to load
-
-  
 </script>
 
 </body></html>

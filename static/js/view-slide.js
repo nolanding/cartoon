@@ -43,7 +43,6 @@ var nMapCanvasBackground = Number(0);
 
 var imgBackground;
 
-
 function loadBackground(sBGFile, nTrackMax, nH){
 	
 // Most images display
@@ -168,11 +167,19 @@ function touchListenerMove(ev){
 
 
 function listenerMove(ev){
-  
+  canvas = document.getElementById
+(
+  'cv'
+);
+
+context = canvas.getContext
+(
+  '2d'
+); 
+
   ev.preventDefault();   
- 
+  bb = canvas.getBoundingClientRect();
   var nX = ev.clientX - bb.left;  
- 
   drawGraphic(nX);
 }
 
@@ -207,7 +214,6 @@ nMapCanvasBackground = N_TRACK_MAX/nWidth;
 	
 var nXScroll = Number(0);	
 
-bb = canvas.getBoundingClientRect();
 	
 if(bb!=null){		
 	
@@ -238,7 +244,6 @@ if(imgBackground != null && imgBackground.complete != false){
 
 
 function drawGraphic(nX){
-
 if (nX < 1){
  nX = Number(0);
 }

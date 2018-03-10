@@ -53,9 +53,9 @@ function listenerTap(ev){
  
  ev.preventDefault();
  
- var nX = ev.clientX - bb.left; 
+ var nX = ev.clientX - rect.left; 
  
- var nY = ev.clientY - bb.top; 
+ var nY = ev.clientY - rect.top; 
  
  getTapped(nX,nY);
 
