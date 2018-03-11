@@ -72,16 +72,13 @@ div.lnk{
  margin-bottom:6%;
 }
 /* REALIGNMENT */
-#eGraphic,#eText{
+#eGraphic,{
  float:none;
  clear:both;
  display:block;
  text-align:center;
  margin-left:auto;
  margin-right:auto;
-}
-#eText{
-  width:90%;
 }
 #eGraphic{
  width:60%;
@@ -118,8 +115,7 @@ button.btn{
  margin-left:0px;
 }
 #eText{
- margin-top:0px;
- margin-bottom:0px;
+ margin:0 auto;
 }
 button.btn{
  font-size:110%;

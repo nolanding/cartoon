@@ -14,7 +14,7 @@ import time
 
 m_level = 1
 f_user = ""
-last = 2
+last = 1
 
 def index(request):
     user = request.user
