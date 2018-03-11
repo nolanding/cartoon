@@ -37,7 +37,7 @@ class dimension1(models.Model):
     iMaxY = models.IntegerField()
     ob = models.IntegerField(default=0)
 
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.a
@@ -51,7 +51,7 @@ class dimension2(models.Model):
     ob = models.IntegerField(default=1)
 
 
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.b
@@ -66,7 +66,7 @@ class dimension3(models.Model):
     ob = models.IntegerField(default=2)
 
 
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.c
@@ -81,8 +81,7 @@ class dimension4(models.Model):
     iMaxY = models.IntegerField()
     ob = models.IntegerField(default=3)
 
-
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.d
@@ -96,7 +95,7 @@ class dimension5(models.Model):
     ob = models.IntegerField(default=4)
 
 
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.e
@@ -110,7 +109,7 @@ class dimension6(models.Model):
     ob = models.IntegerField(default=5)
 
 
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.f
@@ -124,7 +123,7 @@ class dimension7(models.Model):
     ob = models.IntegerField(default=6)
 
 
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.g
@@ -138,7 +137,7 @@ class dimension8(models.Model):
     ob = models.IntegerField(default=7)
 
     
-    key=models.ForeignKey(level)
+    key=models.ForeignKey('level', on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.h
