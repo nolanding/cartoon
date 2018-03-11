@@ -107,27 +107,26 @@
             </div>
             
       <!-- Jumbotron -->
-<div class="row">
-  <div class="col-sm-6">
-      <div class="jumbotron border-shadow" style="margin-top:15px;background-color:rgba(255, 255, 255, 0.4);">
+<div class="row" align="center" style="margin-left:20%; margin-right: 20%;">
+      <div class="jumbotron border-shadow" style="background-color:rgba(255, 255, 255, 0.4);">
         <canvas id="cv" height="480cm" width="480cm" style="border:2px solid black;"></canvas>
-        <label>Puzzle</label>
       </div></div>
-
-  <div class="col-sm-6" >
-      <div id="eText">
+ 
+  <div class="row" style="text-align:center; margin:0 auto">
+    <div class="col-lg-4 col-sm-4"></div>
+      <div id="eText" class="col-lg-4 col-sm-4" style="height:300px;width:400px">
 
       <p id="eFind">Find the Objects</p>
       <p id="eScore">You get 10 point for each Object,there are total 8.</p>
-      <p id="eDebug"></p>
-
-      <button class="b rb" onclick="startGame()">Play</button>
-      <p></p>
+      <!--<p id="eDebug"></p>-->
+      <button class="b rb" onclick="startGame()" style="margin: 0 auto">Play</button>
 </div>
-
+<div class="col-lg-3 col-sm-3"></div>
   </div>
-</div>
-        <div class="col-lg-4 rules border-shadow" style="padding:1px;margin-left:400px;margin-right: 400px;" align="center" >
+<div class="row">
+  <div class="col-lg-4 col-sm-4"></div>
+        <div class="rules border-shadow col-lg-4 col-sm-4" style="height:250px;width:500px margin: 0 auto;text-align: center; font-size: 20px;">
+          <div class="col-lg-4 col-sm-4"></div>
           
             {% block msgblock %}
             {% if messages %}
@@ -139,18 +138,14 @@
 
             </br>
             </br>
-
-
         Enter your answer:
-        <br>
-        <div class="row" align="center">
+        <br><br>
         <form id="ans" method="post" action="/answer/">
             {% csrf_token %}
             <input type="text" name="ans" class="form-control" value="" />
-
-            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit"/>
+            <br>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit"  style="margin: 0 auto;"/><br>
         </form>
-      </div>
         </div>
 
       <!--<div class="col-lg-6 padleft">
@@ -183,7 +178,7 @@ img.src = "{{ level.puzzle.url }}";
 img.addEventListener('load', drawTiles, false);
 
 var boardSize = document.getElementById('cv').width;
-var tileCount = 2;
+var tileCount = 4;
 
 var tileSize = boardSize / tileCount;
 
@@ -210,7 +205,7 @@ document.getElementById('cv').onclick = function(e) {
     drawTiles();
   }
   if (solved) {
-    alert('You Solved it !');
+    alert("you have got the first dot of the level, 2 more to complete the level.")
     loadExample();
   }
 };

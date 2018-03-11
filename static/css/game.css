@@ -26,7 +26,6 @@ button.b:hover, button.b:active{
   box-shadow: 8px 8px 8px #888888;
 }
 .rb{
- padding:4%;
  border:solid 2px #0000aa;;
  -webkit-appearance:none;
  float:none;

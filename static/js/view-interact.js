@@ -104,7 +104,7 @@ function getTappedInfo(re){
 
  if (nIdx >= aRE.length){
 
-  eScore.innerHTML = "Game Over! Tap the <q>Play</q> button to play again!";
+  eScore.innerHTML = "Connect all the 8 objects you found, and answer the series.";
   setAudio(auOver);
   bPlaying = false;
 
@@ -117,9 +117,9 @@ function getTappedInfo(re){
 
    eScore.innerHTML = "You found the "+re.sName+"!";
 
-   eScore.innerHTML += " Your score increases 100 points!";
+   eScore.innerHTML += " Your score increases 10 points!";
 
-   nScore += 100;
+   nScore += 10;
 
 
   }
@@ -158,7 +158,7 @@ function getTappedInfo(re){
  else {
   setAudio(auOver);
   bPlaying = false;
-  eScore.innerHTML += "<br />Game Over! Tap the <q>Play</q> button to play again!";
+  eScore.innerHTML += "Good job, fill the third and move to next level. ";
  }
 
 }
