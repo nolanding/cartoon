@@ -49,7 +49,7 @@ munkres3==1.0.5.5
 mypy-lang==0.4.6
 mysqlclient==1.3.12
 nbformat==4.4.0
-nltk==3.2.5
+nltk==3.4.5
 oauthlib==1.1.2
 packaging==16.8
 pathspec==0.5.5
