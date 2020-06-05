@@ -22,7 +22,7 @@ decorator==4.2.1
 defusedxml==0.5.0
 dennis==0.9
 dependency-management==0.3.1
-Django==1.11
+Django==1.11.29
 django-email-extras==0.3.3
 django-js-asset==1.0.0
 docopt==0.6.2
