@@ -89,7 +89,7 @@ stevedore==1.28.0
 template-remover==0.1.9
 termcolor==1.1.0
 traitlets==4.3.2
-urllib3==1.22
+urllib3==1.26.5
 vim-vint==0.3.18
 vulture==0.10
 wrapt==1.10.11
